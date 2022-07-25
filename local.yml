@@ -1,0 +1,19 @@
+- hosts: localhost
+  pre_tasks:
+    - name: Update Apt
+      become: true
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
+  tasks:
+    - name: Install nodejs and npm
+      become: true
+      apt:
+        name: ["nodejs", "npm"]
+      tags:
+        - install
+        - node
